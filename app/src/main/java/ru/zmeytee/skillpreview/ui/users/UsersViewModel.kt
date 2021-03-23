@@ -1,9 +1,12 @@
 package ru.zmeytee.skillpreview.ui.users
 
 import androidx.lifecycle.ViewModel
-import ru.zmeytee.skillpreview.data.repositories.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import ru.zmeytee.skillpreview.repositories.UserRepository
+import javax.inject.Inject
 
-class UsersViewModel(private val repository: UserRepository): ViewModel() {
+@HiltViewModel
+class UsersViewModel @Inject constructor(private val repository: UserRepository): ViewModel() {
 
 
 }
