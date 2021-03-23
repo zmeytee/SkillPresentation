@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,26 +15,26 @@
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
+        app:elevation="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/purple_700"
+        android:backgroundTint="?attr/colorPrimary"
         android:fitsSystemWindows="true"
         app:fabAlignmentMode="end"
         app:hideOnScroll="true"
-        app:navigationIcon="@drawable/ic_menu" />
+        app:menu="@menu/menu_bottom" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/appDescriptionFab"
         style="@style/BottomAppBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/purple_700"
-        android:contentDescription="fab"
+        android:backgroundTint="?attr/colorPrimary"
         android:foregroundTint="@color/teal_200"
         android:src="@drawable/ic_adb"
         app:layout_anchor="@id/bottomAppBar"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-        app:tint="@android:color/holo_green_light" />
+        app:tint="@android:color/holo_green_light"
+        tools:ignore="ContentDescription" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

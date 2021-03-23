@@ -1,5 +1,6 @@
 package ru.zmeytee.skillpreview.data.models
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 sealed class User {
@@ -8,8 +9,7 @@ sealed class User {
     data class SimpleUser(
         val id: Long,
         val name: String,
-        val email: String,
-        val company: Company
+        @Json(name = "username") val userName: String
     ): User()
 
     @JsonClass(generateAdapter = true)
