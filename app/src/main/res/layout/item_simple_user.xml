@@ -4,30 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="12dp"
     android:background="?attr/selectableItemBackground"
-    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/purple_10"
     app:cardElevation="8dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/userItemAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/userItemUserNameTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/userItemUserName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="?attr/colorOnSecondary"
             android:textSize="24sp"
-            tools:text="User name" />
+            app:layout_constraintEnd_toStartOf="@id/userItemNavAction"
+            app:layout_constraintStart_toEndOf="@id/userItemAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginEnd="0dp"
+            app:layout_goneMarginStart="0dp"
+            tools:text="Username" />
 
         <TextView
-            android:id="@+id/userItemNameTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/userItemName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSecondary"
             android:textSize="14sp"
             android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@id/userItemActionsBarrier"
+            app:layout_constraintEnd_toEndOf="@id/userItemUserName"
+            app:layout_constraintStart_toStartOf="@id/userItemUserName"
+            app:layout_constraintTop_toBottomOf="@id/userItemUserName"
             tools:text="Name" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/userItemDeleteUser"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintStart_toEndOf="@id/userItemMailToUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="?attr/colorPrimary"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/userItemMailToUser"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp"
+            android:src="@drawable/ic_mail"
+            app:layout_constraintStart_toEndOf="@id/userItemCallUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userItemDeleteUser"
+            app:tint="?attr/colorPrimary"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/userItemCallUser"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0"
+            android:src="@drawable/ic_call"
+            app:layout_constraintStart_toStartOf="@id/userItemUserName"
+            app:layout_constraintEnd_toStartOf="@id/userItemMailToUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="?attr/colorPrimary"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/userItemNavAction"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp"
+            android:src="@drawable/ic_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userItemUserName"
+            app:layout_constraintTop_toTopOf="@id/userItemUserName"
+            app:tint="?attr/colorPrimary"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/userItemActionsBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="userItemCallUser, userItemMailToUser, userItemDeleteUser" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

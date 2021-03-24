@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="80dp">
+
+
+        <include
+            android:id="@+id/userDetailsCard"
+            layout="@layout/item_simple_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/userDetailsEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:background="?attr/colorOnPrimary"
+            android:elevation="8dp"
+            tools:text="Email"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            app:drawableStartCompat="@drawable/ic_email" />
+
+        <TextView
+            android:id="@+id/userDetailsPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:background="?attr/colorOnPrimary"
+            android:elevation="8dp"
+            tools:text="Phone"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            app:drawableStartCompat="@drawable/ic_phone"/>
+
+        <TextView
+            android:id="@+id/userDetailsWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:background="?attr/colorOnPrimary"
+            android:elevation="8dp"
+            tools:text="Website"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            app:drawableStartCompat="@drawable/ic_link"/>
+
+        <TextView
+            android:id="@+id/userDetailsAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:background="?attr/colorOnPrimary"
+            android:elevation="8dp"
+            tools:text="Address"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            app:drawableStartCompat="@drawable/ic_location_on"/>
+
+        <TextView
+            android:id="@+id/userDetailsCompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:background="?attr/colorOnPrimary"
+            android:elevation="8dp"
+            tools:text="Company"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            app:drawableStartCompat="@drawable/ic_business"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

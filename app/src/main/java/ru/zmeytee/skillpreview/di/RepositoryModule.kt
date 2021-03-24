@@ -1,20 +1,18 @@
 package ru.zmeytee.skillpreview.di
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import ru.zmeytee.skillpreview.repositories.UserRepositoryImpl
+import ru.zmeytee.skillpreview.repositories.interfaces.UserRepository
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class RepositoryModule {
+abstract class RepositoryModule {
 
-    @Provides
+    @Binds
     @ViewModelScoped
-    fun provideDefaultDispatcher(): CoroutineDispatcher {
-        return Dispatchers.IO
-    }
+    abstract fun provideUserRepository(impl: UserRepositoryImpl): UserRepository
 }

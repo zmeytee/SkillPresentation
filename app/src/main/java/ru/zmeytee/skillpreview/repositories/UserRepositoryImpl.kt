@@ -1,13 +1,16 @@
 package ru.zmeytee.skillpreview.repositories
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.zmeytee.skillpreview.data.models.User
 import ru.zmeytee.skillpreview.networking.Api
+import ru.zmeytee.skillpreview.repositories.interfaces.UserRepository
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(private val api: Api, private val defaultDispatcher: CoroutineDispatcher) {
+class UserRepositoryImpl @Inject constructor(
+    private val api: Api,
+    private val defaultDispatcher: CoroutineDispatcher
+) : UserRepository {
 
     suspend fun getAllUsers(): List<User> {
         return withContext(defaultDispatcher) {

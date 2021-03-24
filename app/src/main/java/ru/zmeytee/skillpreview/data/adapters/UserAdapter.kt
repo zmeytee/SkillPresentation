@@ -2,10 +2,11 @@ package ru.zmeytee.skillpreview.data.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import ru.zmeytee.skillpreview.data.enums.ItemAction
 import ru.zmeytee.skillpreview.data.models.User
 
 class UserAdapter(
-    onClick: (id: Long) -> Unit
+    onClick: (id: Long, action: ItemAction) -> Unit
 ): AsyncListDifferDelegationAdapter<User>(UserDiffUtilCallback()) {
 
     init {

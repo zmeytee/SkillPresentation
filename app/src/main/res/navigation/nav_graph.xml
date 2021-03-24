@@ -4,9 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/usersFragment">
+
     <fragment
         android:id="@+id/usersFragment"
         android:name="ru.zmeytee.skillpreview.ui.users.UsersFragment"
         tools:layout="@layout/fragment_users"
-        android:label="UsersFragment" />
+        android:label="UsersFragment" >
+        <action
+            android:id="@+id/action_usersFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="ru.zmeytee.skillpreview.ui.userdetails.UserDetailsFragment"
+        tools:layout="@layout/fragment_user_details"
+        android:label="UserDetailsFragment" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
+    </fragment>
 </navigation>

@@ -20,6 +20,7 @@ sealed class User {
         val email: String,
         val address: Address,
         val phone: String,
+        val website: String,
         val company: Company
     ): User()
 }

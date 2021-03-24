@@ -1,4 +1,4 @@
-package ru.zmeytee.skillpreview.ui.users
+package ru.zmeytee.skillpreview.ui.userdetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,15 +11,17 @@ import ru.zmeytee.skillpreview.repositories.UserRepositoryImpl
 import javax.inject.Inject
 
 @HiltViewModel
-class UsersViewModel @Inject constructor(private val repository: UserRepositoryImpl): ViewModel() {
+class UserDetailsViewModel @Inject constructor(
+    private val repository: UserRepositoryImpl
+) : ViewModel() {
 
-    private val _users = MutableStateFlow<List<User>>(emptyList())
+    private val _currentUser = MutableStateFlow<User?>(null)
 
-    val users = _users.asStateFlow()
+    val currentUser = _currentUser.asStateFlow()
 
-    fun getListOfAllUsers() {
+    fun getUser(id:Long) {
         viewModelScope.launch {
-            _users.value = repository.getAllUsers()
+            _currentUser.value = repository.getUser(id)
         }
     }
 }
