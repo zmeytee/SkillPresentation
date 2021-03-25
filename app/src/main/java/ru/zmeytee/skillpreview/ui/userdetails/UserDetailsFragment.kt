@@ -2,11 +2,9 @@ package ru.zmeytee.skillpreview.ui.userdetails
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +27,6 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
         bindViewModel()
         setListeners()
         getUserDetails(args.userId)
-        changeItemAction()
     }
 
     private fun bindViewModel() {
@@ -42,17 +39,8 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
 
     private fun setListeners() {
         with(binding) {
-            userDetailsCard.userItemNavAction.setOnClickListener {
-                findNavController().navigateUp()
-            }
+            
         }
-    }
-
-    private fun changeItemAction() {
-        binding.userDetailsCard.userItemNavAction
-            .setImageDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_close, null)
-            )
     }
 
     private fun getUserDetails(id: Long) {

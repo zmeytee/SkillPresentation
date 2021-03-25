@@ -2,11 +2,14 @@ package ru.zmeytee.skillpreview.ui.users
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -46,9 +49,16 @@ class UsersFragment : Fragment(R.layout.fragment_users) {
     private fun initUsersList() {
         userAdapter = UserAdapter(::handleItemAction)
 
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.divider, null)
+
         with(binding.usersList) {
             adapter = userAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            drawable?.let {
+                dividerItemDecoration.setDrawable(it)
+                addItemDecoration(dividerItemDecoration)
+            }
             setHasFixedSize(true)
         }
 

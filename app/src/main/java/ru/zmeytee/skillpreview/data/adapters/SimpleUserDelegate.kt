@@ -40,8 +40,8 @@ class SimpleUserDelegate(
         private var currentUserId: Long? = null
 
         init {
-            binding.userItemNavAction.setOnClickListener {
-                currentUserId?.let { userId -> onClick(userId, ItemAction.INFO) }
+            binding.root.setOnClickListener {
+                currentUserId?.let { onClick(it, ItemAction.INFO) }
             }
 
             binding.userItemCallUser.setOnClickListener {
