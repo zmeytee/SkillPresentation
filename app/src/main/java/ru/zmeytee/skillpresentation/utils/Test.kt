@@ -10,6 +10,7 @@ object Test {
     val users = listOf(
         User.Local(
             id = 0,
+            remoteId = 1,
             name = "name1",
             userName = "userName1",
             email = "email1",
@@ -18,6 +19,7 @@ object Test {
         ),
         User.Local(
             id = 0,
+            remoteId = 2,
             name = "name2",
             userName = "userName2",
             email = "email2",
@@ -26,6 +28,7 @@ object Test {
         ),
         User.Local(
             id = 0,
+            remoteId = 3,
             name = "name3",
             userName = "userName3",
             email = "email3",

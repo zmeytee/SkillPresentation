@@ -8,8 +8,8 @@ sealed class Geo {
 
     @JsonClass(generateAdapter = true)
     data class Remote(
-        val lat: Double,
-        val lng: Double
+        val lat: Double? = null,
+        val lng: Double? = null
     )
 
     @Entity(

@@ -5,6 +5,7 @@ object DbContracts {
     object User {
         const val TABLE_NAME = "users"
         const val ID = "id"
+        const val REMOTE_ID = "remote_id"
         const val NAME = "name"
         const val USER_NAME = "user_name"
         const val EMAIL = "email"

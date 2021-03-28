@@ -2,6 +2,8 @@ package ru.zmeytee.skillpresentation.data.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import ru.zmeytee.skillpresentation.R
 import ru.zmeytee.skillpresentation.data.models.User
@@ -50,6 +52,10 @@ class UserDelegate(
             with(binding) {
                 userItemName.text = item.name
                 userItemUserName.text = item.userName
+                userItemAvatar.load("https://www.meme-arsenal.com/memes/ad998282fd526298aeb217a8e2ee02b0.jpg") {
+                    placeholder(R.drawable.ic_person)
+                    transformations(CircleCropTransformation())
+                }
             }
         }
     }

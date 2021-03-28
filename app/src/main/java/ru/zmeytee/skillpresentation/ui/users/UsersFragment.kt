@@ -3,6 +3,7 @@ package ru.zmeytee.skillpresentation.ui.users
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -32,22 +33,21 @@ class UsersFragment : Fragment(R.layout.fragment_users) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fabActionListener?.setFabAction(ItemAction.USER_ADD)
         initUsersList()
-        setFragmentDefaults()
         bindViewModel()
     }
 
     private fun bindViewModel() {
         with(viewModel) {
+            isLoading
+                .onEach { showLoading(it) }
+                .launchIn(viewLifecycleOwner.lifecycleScope)
+
             users
                 .onEach { userAdapter?.items = it }
                 .launchIn(viewLifecycleOwner.lifecycleScope)
         }
-    }
-
-    private fun setFragmentDefaults() {
-        binding.usersTitle.text = getString(R.string.users_title)
-        fabActionListener?.setFabAction(ItemAction.USER_ADD)
     }
 
     private fun initUsersList() {
@@ -65,8 +65,10 @@ class UsersFragment : Fragment(R.layout.fragment_users) {
             }
             setHasFixedSize(true)
         }
+    }
 
-        viewModel.getListOfAllUsers()
+    private fun showLoading(show: Boolean) {
+        binding.usersLoading.root.isVisible = show
     }
 
     private fun navigateToUserDetails(userId: Long) {

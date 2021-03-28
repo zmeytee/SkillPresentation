@@ -6,4 +6,5 @@ interface UserRepository {
 
     suspend fun getAllUsers(): List<User>
     suspend fun getUser(id: Long): User
+    suspend fun saveUser(user: User.Remote)
 }

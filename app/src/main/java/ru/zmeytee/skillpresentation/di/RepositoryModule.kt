@@ -12,5 +12,5 @@ import ru.zmeytee.skillpresentation.data.repositories.interfaces.UserRepository
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideUserRepository(impl: UserRepositoryImpl): UserRepository
+    abstract fun providesUserRepository(impl: UserRepositoryImpl): UserRepository
 }

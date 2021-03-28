@@ -1,16 +1,22 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 2,
-    "identityHash": "1ab7d8009927d525a1c199b4769b8a6a",
+    "version": 1,
+    "identityHash": "76bee53be685845b3c475d3200306162",
     "entities": [
       {
         "tableName": "users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `user_name` TEXT NOT NULL, `email` TEXT NOT NULL, `phone` TEXT NOT NULL, `website` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remote_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `user_name` TEXT NOT NULL, `email` TEXT NOT NULL, `phone` TEXT NOT NULL, `website` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remoteId",
+            "columnName": "remote_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -253,7 +259,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1ab7d8009927d525a1c199b4769b8a6a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '76bee53be685845b3c475d3200306162')"
     ]
   }
 }

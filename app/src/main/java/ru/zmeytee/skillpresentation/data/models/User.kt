@@ -14,11 +14,11 @@ sealed class User {
         val id: Long,
         val name: String,
         @Json(name = "username") val userName: String,
-        val email: String,
-        val address: Address.Remote,
-        val phone: String,
-        val website: String,
-        val company: Company.Remote
+        val email: String? = null,
+        val address: Address.Remote? = null,
+        val phone: String? = null,
+        val website: String? = null,
+        val company: Company.Remote? = null
     ): User()
 
     @Entity(tableName = DbContracts.User.TABLE_NAME)
@@ -26,6 +26,9 @@ sealed class User {
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = DbContracts.User.ID)
         val id: Long,
+
+        @ColumnInfo(name = DbContracts.User.REMOTE_ID)
+        val remoteId: Long,
 
         @ColumnInfo(name = DbContracts.User.NAME)
         val name: String,

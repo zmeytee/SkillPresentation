@@ -8,9 +8,9 @@ sealed class Company {
 
     @JsonClass(generateAdapter = true)
     data class Remote(
-        val name: String,
-        val catchPhrase: String,
-        val bs: String
+        val name: String? = null,
+        val catchPhrase: String? = null,
+        val bs: String? = null
     )
 
     @Entity(

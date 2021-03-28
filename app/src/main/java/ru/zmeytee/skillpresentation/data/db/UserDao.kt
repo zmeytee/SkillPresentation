@@ -19,13 +19,13 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsers(users: List<User.Local>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAddresses(address: List<Address.Local>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertGeo(geo: List<Geo.Local>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCompany(companies: List<Company.Local>)
 
     @Query("DELETE FROM ${DbContracts.User.TABLE_NAME} WHERE ${DbContracts.User.ID} = :userId")

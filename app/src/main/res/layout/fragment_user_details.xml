@@ -1,193 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="86dp">
+
+            <include
+                android:id="@+id/userDetailsCard"
+                layout="@layout/item_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/userDetailsEmailIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_email"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/userDetailsEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/userDetailsEmailIcon"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="20sp"
+                    tools:text="Email" />
+
+                <TextView
+                    android:id="@+id/userDetailsEmailDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userDetailsEmail"
+                    android:layout_alignStart="@id/userDetailsEmail"
+                    android:text="This user email"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/userDetailsPhoneIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_phone"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/userDetailsPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/userDetailsPhoneIcon"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="20sp"
+                    tools:text="Phone" />
+
+                <TextView
+                    android:id="@+id/userDetailsPhoneDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userDetailsPhone"
+                    android:layout_alignStart="@id/userDetailsPhone"
+                    android:text="This user phone"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/userDetailsWebsiteIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_link"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/userDetailsWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/userDetailsWebsiteIcon"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="20sp"
+                    tools:text="Website" />
+
+                <TextView
+                    android:id="@+id/userDetailsWebsiteDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userDetailsWebsite"
+                    android:layout_alignStart="@id/userDetailsWebsite"
+                    android:text="This user website"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/userDetailsAddressIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_location_on"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/userDetailsAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/userDetailsAddressIcon"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="20sp"
+                    tools:text="Address" />
+
+                <TextView
+                    android:id="@+id/userDetailsAddressDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userDetailsAddress"
+                    android:layout_alignStart="@id/userDetailsAddress"
+                    android:text="This user address"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/userDetailsCompanyIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_business"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/userDetailsCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/userDetailsCompanyIcon"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="20sp"
+                    tools:text="Company" />
+
+                <TextView
+                    android:id="@+id/userDetailsCompanyDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userDetailsCompany"
+                    android:layout_alignStart="@id/userDetailsCompany"
+                    android:text="This user company"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/userDetailsLoading"
+        layout="@layout/view_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingBottom="86dp">
+        android:visibility="gone" />
 
-        <include
-            android:id="@+id/userDetailsCard"
-            layout="@layout/item_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/userDetailsEmailIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_email"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/userDetailsEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/userDetailsEmailIcon"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                tools:text="Email" />
-
-            <TextView
-                android:id="@+id/userDetailsEmailDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userDetailsEmail"
-                android:layout_alignStart="@id/userDetailsEmail"
-                android:text="This user email"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/userDetailsPhoneIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_phone"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/userDetailsPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/userDetailsPhoneIcon"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                tools:text="Phone" />
-
-            <TextView
-                android:id="@+id/userDetailsPhoneDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userDetailsPhone"
-                android:layout_alignStart="@id/userDetailsPhone"
-                android:text="This user phone"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/userDetailsWebsiteIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_link"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/userDetailsWebsite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/userDetailsWebsiteIcon"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                tools:text="Website" />
-
-            <TextView
-                android:id="@+id/userDetailsWebsiteDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userDetailsWebsite"
-                android:layout_alignStart="@id/userDetailsWebsite"
-                android:text="This user website"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/userDetailsAddressIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_location_on"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/userDetailsAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/userDetailsAddressIcon"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                tools:text="Address" />
-
-            <TextView
-                android:id="@+id/userDetailsAddressDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userDetailsAddress"
-                android:layout_alignStart="@id/userDetailsAddress"
-                android:text="This user address"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/userDetailsCompanyIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_business"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/userDetailsCompany"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/userDetailsCompanyIcon"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                tools:text="Company" />
-
-            <TextView
-                android:id="@+id/userDetailsCompanyDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userDetailsCompany"
-                android:layout_alignStart="@id/userDetailsCompany"
-                android:text="This user company"
-                android:textSize="12sp" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</FrameLayout>

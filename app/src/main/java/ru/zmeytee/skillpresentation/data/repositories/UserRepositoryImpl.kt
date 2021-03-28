@@ -1,6 +1,8 @@
 package ru.zmeytee.skillpresentation.data.repositories
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.withContext
 import ru.zmeytee.skillpresentation.data.db.UserDao
 import ru.zmeytee.skillpresentation.data.models.Address
 import ru.zmeytee.skillpresentation.data.models.Company
@@ -8,7 +10,6 @@ import ru.zmeytee.skillpresentation.data.models.Geo
 import ru.zmeytee.skillpresentation.data.models.User
 import ru.zmeytee.skillpresentation.data.networking.Api
 import ru.zmeytee.skillpresentation.data.repositories.interfaces.UserRepository
-import ru.zmeytee.skillpresentation.utils.Test
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -21,17 +22,17 @@ class UserRepositoryImpl @Inject constructor(
     private var job: Job? = null
 
 //    Test test test
-    init {
-        job?.cancel()
-        job = CoroutineScope(Dispatchers.IO).launch {
-            saveLocalUsers(Test.users)
-            saveLocalAddress(Test.addresses)
-            saveLocalGeo(Test.geo)
-            saveLocalCompany(Test.companies)
-
-            Timber.d(userDao.getAllUsers().joinToString("\n"))
-        }
-    }
+//    init {
+//        job?.cancel()
+//        job = CoroutineScope(Dispatchers.IO).launch {
+//            saveLocalUsers(Test.users)
+//            saveLocalAddress(Test.addresses)
+//            saveLocalGeo(Test.geo)
+//            saveLocalCompany(Test.companies)
+//
+//            Timber.d(userDao.getAllUsers().joinToString("\n"))
+//        }
+//    }
 
     override suspend fun getAllUsers(): List<User> {
         return withContext(defaultDispatcher) {
@@ -45,6 +46,12 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun saveUser(user: User.Remote) {
+        withContext(defaultDispatcher) {
+            saveRemoteUser(user)
+        }
+    }
+
 //===========================================================
 //===================== Работа с сетью ======================
 //===========================================================
@@ -55,6 +62,11 @@ class UserRepositoryImpl @Inject constructor(
 
     private suspend fun getRemoteUser(id: Long): User.Remote {
         return api.getUserById(id)
+    }
+
+    private suspend fun saveRemoteUser(user: User.Remote) {
+        val newUser = api.saveUser(user)
+        Timber.d("POST\n${newUser.toString()}")
     }
 
 //===========================================================

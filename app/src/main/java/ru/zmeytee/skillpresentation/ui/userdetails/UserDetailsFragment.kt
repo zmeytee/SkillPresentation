@@ -2,11 +2,14 @@ package ru.zmeytee.skillpresentation.ui.userdetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import coil.load
+import coil.transform.CircleCropTransformation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -28,14 +31,18 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fabActionListener?.setFabAction(ItemAction.BACK)
         bindViewModel()
         setListeners()
         getUserDetails(args.userId)
-        fabActionListener?.setFabAction(ItemAction.BACK)
     }
 
     private fun bindViewModel() {
         with(viewModel) {
+            isLoading
+                .onEach { showLoading(it) }
+                .launchIn(viewLifecycleOwner.lifecycleScope)
+
             currentUser
                 .onEach { handleUserDetails(it) }
                 .launchIn(viewLifecycleOwner.lifecycleScope)
@@ -69,9 +76,18 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
             userDetailsEmail.text = remoteUser.email
             userDetailsWebsite.text = remoteUser.website
             userDetailsPhone.text = remoteUser.phone
-            userDetailsAddress.text = remoteUser.address.street
-            userDetailsAddressDescription.text = remoteUser.address.city
-            userDetailsCompany.text = remoteUser.company.name
+            userDetailsAddress.text = remoteUser.address?.street
+            userDetailsAddressDescription.text = remoteUser.address?.city
+            userDetailsCompany.text = remoteUser.company?.name
+
+            userDetailsCard.userItemAvatar.load("https://www.meme-arsenal.com/memes/ad998282fd526298aeb217a8e2ee02b0.jpg") {
+                placeholder(R.drawable.ic_person)
+                transformations(CircleCropTransformation())
+            }
         }
+    }
+
+    private fun showLoading(show: Boolean) {
+        binding.userDetailsLoading.root.isVisible = show
     }
 }

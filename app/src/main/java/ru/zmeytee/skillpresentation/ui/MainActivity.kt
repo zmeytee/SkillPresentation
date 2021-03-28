@@ -26,7 +26,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), FabActionListene
 
     override fun setFabAction(action: ItemAction) {
         when (action) {
-            ItemAction.USER_ADD -> changeNavigationFabAction(R.drawable.ic_person_add)
+            ItemAction.USER_ADD -> changeNavigationFabAction(
+                R.drawable.ic_person_add,
+                R.id.action_usersFragment_to_userAddFragment
+            )
             ItemAction.BACK -> changeNavigationFabAction(R.drawable.ic_arrow_back)
         }
     }

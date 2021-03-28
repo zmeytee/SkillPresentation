@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.zmeytee.skillpresentation.data.db.AppDatabase
+import ru.zmeytee.skillpresentation.data.db.UserDatabase
 import ru.zmeytee.skillpresentation.data.db.UserDao
 import javax.inject.Singleton
 
@@ -16,16 +16,16 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(application: Application): AppDatabase {
+    fun provideAppDatabase(application: Application): UserDatabase {
         return Room.databaseBuilder(
             application,
-            AppDatabase::class.java,
-            AppDatabase.DB_NAME
+            UserDatabase::class.java,
+            UserDatabase.DB_NAME
         ).build()
     }
 
     @Provides
-    fun provideUserDao(db: AppDatabase): UserDao {
+    fun provideUserDao(db: UserDatabase): UserDao {
         return db.userDao()
     }
 }

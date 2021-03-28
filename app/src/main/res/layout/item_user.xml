@@ -1,50 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/itemUserCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    app:cardElevation="0dp">
+    android:paddingVertical="16dp"
+    android:paddingHorizontal="12dp">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/userItemAvatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_person"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/userItemUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/userItemAvatar"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="24sp"
+        tools:text="Username" />
 
-        <ImageView
-            android:id="@+id/userItemAvatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_person"
-            tools:ignore="ContentDescription" />
+    <TextView
+        android:id="@+id/userItemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userItemUserName"
+        android:layout_alignStart="@id/userItemUserName"
+        android:layout_alignEnd="@id/userItemUserName"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        tools:text="Name" />
 
-        <TextView
-            android:id="@+id/userItemUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/userItemAvatar"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="24sp"
-            tools:text="Username" />
-
-        <TextView
-            android:id="@+id/userItemName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/userItemUserName"
-            android:layout_alignStart="@id/userItemUserName"
-            android:layout_alignEnd="@id/userItemUserName"
-            android:textSize="14sp"
-            android:textStyle="italic"
-            tools:text="Name" />
-
-    </RelativeLayout>
-</com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

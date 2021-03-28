@@ -8,11 +8,11 @@ sealed class Address {
 
     @JsonClass(generateAdapter = true)
     data class Remote(
-        val street: String,
-        val suite: String,
-        val city: String,
-        val zipcode: String,
-        val geo: Geo.Remote
+        val street: String? = null,
+        val suite: String? = null,
+        val city: String? = null,
+        val zipcode: String? = null,
+        val geo: Geo.Remote? = null
     )
 
     @Entity(

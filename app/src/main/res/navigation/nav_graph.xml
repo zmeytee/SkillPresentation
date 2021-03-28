@@ -8,20 +8,29 @@
     <fragment
         android:id="@+id/usersFragment"
         android:name="ru.zmeytee.skillpresentation.ui.users.UsersFragment"
-        tools:layout="@layout/fragment_users"
-        android:label="UsersFragment" >
+        android:label="UsersFragment"
+        tools:layout="@layout/fragment_users">
         <action
             android:id="@+id/action_usersFragment_to_userDetailsFragment"
             app:destination="@id/userDetailsFragment" />
+        <action
+            android:id="@+id/action_usersFragment_to_userAddFragment"
+            app:destination="@id/userAddFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/userDetailsFragment"
         android:name="ru.zmeytee.skillpresentation.ui.userdetails.UserDetailsFragment"
-        tools:layout="@layout/fragment_user_details"
-        android:label="UserDetailsFragment" >
+        android:label="UserDetailsFragment"
+        tools:layout="@layout/fragment_user_details">
         <argument
             android:name="userId"
             app:argType="long" />
     </fragment>
+
+    <fragment
+        android:id="@+id/userAddFragment"
+        android:name="ru.zmeytee.skillpresentation.ui.useradd.UserAddFragment"
+        android:label="UserAddFragment"
+        tools:layout="@layout/fragment_user_add" />
 </navigation>
