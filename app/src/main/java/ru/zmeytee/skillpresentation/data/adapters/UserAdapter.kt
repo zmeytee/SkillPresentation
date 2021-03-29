@@ -15,10 +15,7 @@ class UserAdapter(
 
     class UserDiffUtilCallback: DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return when {
-                oldItem is User.Remote && newItem is User.Remote -> oldItem.id == newItem.id
-                else -> false
-            }
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {

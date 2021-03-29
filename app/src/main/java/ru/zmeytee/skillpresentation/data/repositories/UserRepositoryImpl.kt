@@ -1,16 +1,12 @@
 package ru.zmeytee.skillpresentation.data.repositories
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import ru.zmeytee.skillpresentation.data.db.UserDao
-import ru.zmeytee.skillpresentation.data.models.Address
-import ru.zmeytee.skillpresentation.data.models.Company
-import ru.zmeytee.skillpresentation.data.models.Geo
 import ru.zmeytee.skillpresentation.data.models.User
 import ru.zmeytee.skillpresentation.data.networking.Api
 import ru.zmeytee.skillpresentation.data.repositories.interfaces.UserRepository
-import timber.log.Timber
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -19,74 +15,68 @@ class UserRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher
 ) : UserRepository {
 
-    private var job: Job? = null
-
-//    Test test test
-//    init {
-//        job?.cancel()
-//        job = CoroutineScope(Dispatchers.IO).launch {
-//            saveLocalUsers(Test.users)
-//            saveLocalAddress(Test.addresses)
-//            saveLocalGeo(Test.geo)
-//            saveLocalCompany(Test.companies)
-//
-//            Timber.d(userDao.getAllUsers().joinToString("\n"))
-//        }
-//    }
+    override fun getAllLocalUsersFlow(): Flow<List<User>> {
+        return userDao.getAllUsersFlow()
+    }
 
     override suspend fun getAllUsers(): List<User> {
         return withContext(defaultDispatcher) {
-            getAllRemoteUsers()
+            val list = getAllRemoteUsers()
+            saveLocalUsers(list)
+            list
         }
     }
 
     override suspend fun getUser(id: Long): User {
         return withContext(defaultDispatcher) {
-            getRemoteUser(id)
+            getLocalUser(id)
         }
     }
 
-    override suspend fun saveUser(user: User.Remote) {
+    override suspend fun saveUser(user: User) {
         withContext(defaultDispatcher) {
-            saveRemoteUser(user)
+            val newUser = saveRemoteUser(user)
+            saveLocalUsers(listOf(newUser))
         }
     }
 
-//===========================================================
-//===================== Работа с сетью ======================
-//===========================================================
+    override suspend fun deleteUser(id: Long) {
+        withContext(defaultDispatcher) {
+            deleteRemoteUser(id)
+            deleteLocalUser(id)
+        }
+    }
 
-    private suspend fun getAllRemoteUsers(): List<User.Remote> {
+//====== Работа с сетью ===========================================================
+
+    private suspend fun getAllRemoteUsers(): List<User> {
         return api.getAllUsers()
     }
 
-    private suspend fun getRemoteUser(id: Long): User.Remote {
+    private suspend fun getRemoteUser(id: Long): User {
         return api.getUserById(id)
     }
 
-    private suspend fun saveRemoteUser(user: User.Remote) {
-        val newUser = api.saveUser(user)
-        Timber.d("POST\n${newUser.toString()}")
+    private suspend fun saveRemoteUser(user: User): User {
+        return api.saveUser(user)
     }
 
-//===========================================================
-//======================= Работа с БД =======================
-//===========================================================
+    private suspend fun deleteRemoteUser(userId: Long) {
+        api.deleteUserById(userId)
+    }
 
-    private suspend fun saveLocalUsers(users: List<User.Local>) {
+//======== Работа с БД ============================================================
+
+    private suspend fun getAllLocalUsersList(): List<User> {
+        return userDao.getAllUsersList()
+    }
+
+    private suspend fun getLocalUser(id: Long): User {
+        return userDao.getUserById(id)
+    }
+
+    private suspend fun saveLocalUsers(users: List<User>) {
         userDao.insertUsers(users)
-    }
-
-    private suspend fun saveLocalAddress(address: List<Address.Local>) {
-        userDao.insertAddresses(address)
-    }
-
-    private suspend fun saveLocalGeo(geo: List<Geo.Local>) {
-        userDao.insertGeo(geo)
-    }
-
-    private suspend fun saveLocalCompany(company: List<Company.Local>) {
-        userDao.insertCompany(company)
     }
 
     private suspend fun deleteLocalUser(userId: Long) {

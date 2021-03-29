@@ -1,23 +1,25 @@
 package ru.zmeytee.skillpresentation.data.networking
 
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 import ru.zmeytee.skillpresentation.data.models.User
 
 interface Api {
 
     @GET("users")
-    suspend fun getAllUsers(): List<User.Remote>
+    suspend fun getAllUsers(): List<User>
 
     @GET("users/{id}")
     suspend fun getUserById(
         @Path("id") id: Long
-    ): User.Remote
+    ): User
 
     @POST("users")
     suspend fun saveUser(
-        @Body user: User.Remote
-    ): User.Remote
+        @Body user: User
+    ): User
+
+    @DELETE("users/{id}")
+    suspend fun deleteUserById(
+        @Path("id") id: Long
+    )
 }

@@ -2,12 +2,17 @@ package ru.zmeytee.skillpresentation.ui.useradd
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import coil.transform.CircleCropTransformation
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import ru.zmeytee.skillpresentation.R
 import ru.zmeytee.skillpresentation.data.enums.ItemAction
 import ru.zmeytee.skillpresentation.data.models.Address
@@ -40,7 +45,13 @@ class UserAddFragment : Fragment(R.layout.fragment_user_add) {
 
     private fun bindViewModel() {
         with(viewModel) {
+            isLoading
+                .onEach { showLoading(it) }
+                .launchIn(viewLifecycleOwner.lifecycleScope)
 
+            addingSuccess
+                .onEach { if (it) findNavController().navigateUp() }
+                .launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 
@@ -48,18 +59,18 @@ class UserAddFragment : Fragment(R.layout.fragment_user_add) {
         binding.saveUserFab.setOnClickListener { saveUser(getUserFromForms()) }
     }
 
-    private fun saveUser(user: User.Remote) {
+    private fun saveUser(user: User) {
         viewModel.saveUser(user)
     }
 
-    private fun getUserFromForms(): User.Remote {
+    private fun getUserFromForms(): User {
         val name = binding.nameEditText.text.toString()
         val userName = binding.userNameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
         val phone = binding.phoneEditText.text.toString()
         val website = binding.websiteEditText.text.toString()
 
-        return User.Remote(
+        return User(
             id = 0,
             name = name,
             userName = userName,
@@ -71,13 +82,13 @@ class UserAddFragment : Fragment(R.layout.fragment_user_add) {
         )
     }
 
-    private fun getAddressFromForms(): Address.Remote {
-        val addressStreet = binding.streetEditText.text.toString()
+    private fun getAddressFromForms(): Address {
+        val addressStreet = binding.streetEditText.text?.toString()
         val addressSuite = binding.suiteEditText.text.toString()
         val addressCity = binding.cityEditText.text.toString()
         val addressZipcode = binding.zipcodeEditText.text.toString()
 
-        return Address.Remote(
+        return Address(
             street = addressStreet,
             suite = addressSuite,
             city = addressCity,
@@ -86,25 +97,29 @@ class UserAddFragment : Fragment(R.layout.fragment_user_add) {
         )
     }
 
-    private fun getGeoFromForms(): Geo.Remote {
+    private fun getGeoFromForms(): Geo {
         val geoLat = null
         val geoLng = null
 
-        return Geo.Remote(
+        return Geo(
             lat = geoLat,
             lng = geoLng
         )
     }
 
-    private fun getCompanyFromForms(): Company.Remote {
+    private fun getCompanyFromForms(): Company {
         val companyName = binding.companyNameEditText.text.toString()
         val companyCatchPhrase = binding.companyCatchPhraseEditText.text.toString()
         val companyBs = binding.companyBsEditText.text.toString()
 
-        return Company.Remote(
+        return Company(
             name = companyName,
             catchPhrase = companyCatchPhrase,
             bs = companyBs
         )
+    }
+
+    private fun showLoading(show: Boolean) {
+        binding.loadingProgress.root.isVisible = show
     }
 }

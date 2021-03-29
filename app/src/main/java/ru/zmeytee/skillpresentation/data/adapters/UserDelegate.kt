@@ -12,10 +12,10 @@ import ru.zmeytee.skillpresentation.utils.inflate
 
 class UserDelegate(
     private val onClick: (id: Long) -> Unit
-) : AbsListItemAdapterDelegate<User.Remote, User, UserDelegate.Holder>() {
+) : AbsListItemAdapterDelegate<User, User, UserDelegate.Holder>() {
 
     override fun isForViewType(item: User, items: MutableList<User>, position: Int): Boolean {
-        return item is User.Remote
+        return true
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): Holder {
@@ -26,7 +26,7 @@ class UserDelegate(
     }
 
     override fun onBindViewHolder(
-        item: User.Remote,
+        item: User,
         holder: Holder,
         payloads: MutableList<Any>
     ) {
@@ -46,7 +46,7 @@ class UserDelegate(
             }
         }
 
-        fun bind(item: User.Remote) {
+        fun bind(item: User) {
             currentUserId = item.id
 
             with(binding) {

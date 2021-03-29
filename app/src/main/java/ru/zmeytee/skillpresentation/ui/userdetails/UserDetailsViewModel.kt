@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -21,17 +20,25 @@ class UserDetailsViewModel @Inject constructor(
     private var currentJob: Job? = null
 
     private val _isLoading = MutableStateFlow(false)
+    private val _deletingSuccess = MutableStateFlow(false)
     private val _currentUser = MutableStateFlow<User?>(null)
 
     val isLoading = _isLoading.asStateFlow()
+    val deletingSuccess = _deletingSuccess.asStateFlow()
     val currentUser = _currentUser.asStateFlow()
 
     fun getUser(id:Long) {
         currentJob = viewModelScope.launch {
             _isLoading.value = true
-            delay(1000) // Для наглядности
             _currentUser.value = repository.getUser(id)
             _isLoading.value = false
+        }
+    }
+
+    fun deleteUser(id: Long) {
+        viewModelScope.launch {
+            repository.deleteUser(id)
+            _deletingSuccess.value = true
         }
     }
 

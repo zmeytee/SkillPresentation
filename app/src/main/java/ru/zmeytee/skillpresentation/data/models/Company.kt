@@ -1,47 +1,17 @@
 package ru.zmeytee.skillpresentation.data.models
 
-import androidx.room.*
+import androidx.room.ColumnInfo
 import com.squareup.moshi.JsonClass
 import ru.zmeytee.skillpresentation.data.contracts.DbContracts
 
-sealed class Company {
+@JsonClass(generateAdapter = true)
+data class Company(
+    @ColumnInfo(name = DbContracts.User.COMPANY_NAME)
+    val name: String? = null,
 
-    @JsonClass(generateAdapter = true)
-    data class Remote(
-        val name: String? = null,
-        val catchPhrase: String? = null,
-        val bs: String? = null
-    )
+    @ColumnInfo(name = DbContracts.User.COMPANY_CATCH_PHRASE)
+    val catchPhrase: String? = null,
 
-    @Entity(
-        tableName = DbContracts.Company.TABLE_NAME,
-        foreignKeys = [
-            ForeignKey(
-                entity = User.Local::class,
-                parentColumns = [DbContracts.User.ID],
-                childColumns = [DbContracts.Company.USER_ID],
-                onDelete = ForeignKey.CASCADE
-            )
-        ],
-        indices = [
-            Index(DbContracts.Company.USER_ID)
-        ]
-    )
-    data class Local(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = DbContracts.Company.ID)
-        val id: Long,
-
-        @ColumnInfo(name = DbContracts.Company.USER_ID)
-        val userId: Long,
-
-        @ColumnInfo(name = DbContracts.Company.NAME)
-        val name: String,
-
-        @ColumnInfo(name = DbContracts.Company.CATCH_PHRASE)
-        val catchPhrase: String,
-
-        @ColumnInfo(name = DbContracts.Company.BS)
-        val bs: String
-    )
-}
+    @ColumnInfo(name = DbContracts.User.COMPANY_BS)
+    val bs: String? = null
+)

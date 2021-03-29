@@ -1,52 +1,24 @@
 package ru.zmeytee.skillpresentation.data.models
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import com.squareup.moshi.JsonClass
 import ru.zmeytee.skillpresentation.data.contracts.DbContracts
 
-sealed class Address {
+@JsonClass(generateAdapter = true)
+data class Address(
+    @ColumnInfo(name = DbContracts.User.ADDRESS_STREET)
+    val street: String? = null,
 
-    @JsonClass(generateAdapter = true)
-    data class Remote(
-        val street: String? = null,
-        val suite: String? = null,
-        val city: String? = null,
-        val zipcode: String? = null,
-        val geo: Geo.Remote? = null
-    )
+    @ColumnInfo(name = DbContracts.User.ADDRESS_SUITE)
+    val suite: String? = null,
 
-    @Entity(
-        tableName = DbContracts.Address.TABLE_NAME,
-        foreignKeys = [
-            ForeignKey(
-                entity = User.Local::class,
-                parentColumns = [DbContracts.User.ID],
-                childColumns = [DbContracts.Address.USER_ID],
-                onDelete = ForeignKey.CASCADE
-            )
-        ],
-        indices = [
-            Index(DbContracts.Address.USER_ID)
-        ]
-    )
-    data class Local(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = DbContracts.Address.ID)
-        val id: Long,
+    @ColumnInfo(name = DbContracts.User.ADDRESS_CITY)
+    val city: String? = null,
 
-        @ColumnInfo(name = DbContracts.Address.USER_ID)
-        val userId: Long,
+    @ColumnInfo(name = DbContracts.User.ADDRESS_ZIP_CODE)
+    val zipcode: String? = null,
 
-        @ColumnInfo(name = DbContracts.Address.STREET)
-        val street: String,
-
-        @ColumnInfo(name = DbContracts.Address.SUITE)
-        val suite: String,
-
-        @ColumnInfo(name = DbContracts.Address.CITY)
-        val city: String,
-
-        @ColumnInfo(name = DbContracts.Address.ZIP_CODE)
-        val zipcode: String
-    )
-}
+    @Embedded
+    val geo: Geo? = null
+)

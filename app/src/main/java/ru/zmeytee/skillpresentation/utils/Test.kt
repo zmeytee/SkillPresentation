@@ -7,105 +7,93 @@ import ru.zmeytee.skillpresentation.data.models.User
 
 object Test {
 
-    val users = listOf(
-        User.Local(
-            id = 0,
-            remoteId = 1,
-            name = "name1",
-            userName = "userName1",
-            email = "email1",
-            phone = "phone1",
-            website = "website1"
+    private val geo = listOf(
+        Geo(
+            lat = 13.3,
+            lng = 31.1
         ),
-        User.Local(
-            id = 0,
-            remoteId = 2,
-            name = "name2",
-            userName = "userName2",
-            email = "email2",
-            phone = "phone2",
-            website = "website2"
+        Geo(
+            lat = 13.3,
+            lng = 31.1
         ),
-        User.Local(
-            id = 0,
-            remoteId = 3,
-            name = "name3",
-            userName = "userName3",
-            email = "email3",
-            phone = "phone3",
-            website = "website3"
+        Geo(
+            lat = 13.3,
+            lng = 31.1
         ),
     )
 
-    val addresses = listOf(
-        Address.Local(
-            id = 0,
-            userId = 1,
+    private val addresses = listOf(
+        Address(
             street = "street1",
             suite = "suite1",
             city = "City1",
-            zipcode = "zipcode1"
+            zipcode = "zipcode1",
+            geo = geo[0]
         ),
-        Address.Local(
-            id = 0,
-            userId = 1,
+        Address(
             street = "street2",
             suite = "suite2",
             city = "City2",
-            zipcode = "zipcode2"
+            zipcode = "zipcode2",
+            geo = geo[1]
         ),
-        Address.Local(
-            id = 0,
-            userId = 1,
+        Address(
             street = "street3",
             suite = "suite3",
             city = "City3",
-            zipcode = "zipcode3"
+            zipcode = "zipcode3",
+            geo = geo[2]
         ),
     )
 
-    val geo = listOf(
-        Geo.Local(
-            id = 0,
-            addressId = 1,
-            lat = 13.3,
-            lng = 31.1
-        ),
-        Geo.Local(
-            id = 0,
-            addressId = 1,
-            lat = 13.3,
-            lng = 31.1
-        ),
-        Geo.Local(
-            id = 0,
-            addressId = 1,
-            lat = 13.3,
-            lng = 31.1
-        ),
-    )
-
-    val companies = listOf(
-        Company.Local(
-            id = 0,
-            userId = 1,
+    private val companies = listOf(
+        Company(
             name = "Name1",
             catchPhrase = "Catch Phrase1",
             bs = "BS1"
         ),
-        Company.Local(
-            id = 0,
-            userId = 1,
+        Company(
             name = "Name2",
             catchPhrase = "Catch Phrase2",
             bs = "BS2"
         ),
-        Company.Local(
-            id = 0,
-            userId = 1,
+        Company(
             name = "Name3",
             catchPhrase = "Catch Phrase3",
             bs = "BS3"
+        ),
+    )
+
+    val users = listOf(
+        User(
+            id = 0,
+            name = "name1",
+            userName = "userName1",
+            email = "email1",
+            phone = "phone1",
+            website = "website1",
+            address = addresses[0],
+            company = companies[0]
+        ),
+        User(
+            id = 0,
+            name = "name2",
+            userName = "userName2",
+            email = "email2",
+            phone = "phone2",
+            website = "website2",
+            address = addresses[1],
+            company = companies[1]
+        ),
+        User(
+            id = 0,
+            name = "name3",
+            userName = "userName3",
+            email = "email3",
+            phone = "phone3",
+            website = "website3",
+            address = addresses[2],
+            company = companies[2]
         ),
     )
 }

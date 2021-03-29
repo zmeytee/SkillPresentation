@@ -1,48 +1,44 @@
 package ru.zmeytee.skillpresentation.data.models
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import ru.zmeytee.skillpresentation.data.contracts.DbContracts
 
-sealed class User {
+@JsonClass(generateAdapter = true)
+@Entity(tableName = DbContracts.User.TABLE_NAME)
+data class User(
+    @PrimaryKey
+    @ColumnInfo(name = DbContracts.User.ID, index = true)
+    val id: Long,
 
-    @JsonClass(generateAdapter = true)
-    data class Remote(
-        val id: Long,
-        val name: String,
-        @Json(name = "username") val userName: String,
-        val email: String? = null,
-        val address: Address.Remote? = null,
-        val phone: String? = null,
-        val website: String? = null,
-        val company: Company.Remote? = null
-    ): User()
+    @ColumnInfo(name = DbContracts.User.NAME)
+    val name: String,
 
-    @Entity(tableName = DbContracts.User.TABLE_NAME)
-    data class Local(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = DbContracts.User.ID)
-        val id: Long,
+    @ColumnInfo(name = DbContracts.User.USER_NAME)
+    @Json(name = "username")
+    val userName: String,
 
-        @ColumnInfo(name = DbContracts.User.REMOTE_ID)
-        val remoteId: Long,
+    @ColumnInfo(name = DbContracts.User.EMAIL)
+    val email: String? = null,
 
-        @ColumnInfo(name = DbContracts.User.NAME)
-        val name: String,
+    @Embedded
+    val address: Address? = null,
 
-        @ColumnInfo(name = DbContracts.User.USER_NAME)
-        val userName: String,
+    @ColumnInfo(name = DbContracts.User.PHONE)
+    val phone: String? = null,
 
-        @ColumnInfo(name = DbContracts.User.EMAIL)
-        val email: String,
+    @ColumnInfo(name = DbContracts.User.WEBSITE)
+    val website: String? = null,
 
-        @ColumnInfo(name = DbContracts.User.PHONE)
-        val phone: String,
+    @Embedded
+    val company: Company? = null
+)
 
-        @ColumnInfo(name = DbContracts.User.WEBSITE)
-        val website: String,
-    )
-}
+
+
+
+
