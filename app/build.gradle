@@ -12,19 +12,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "ru.zmeytee.skillpresentation"
+        applicationId "ru.zmeytee.networkingsample"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
     }
 
     buildTypes {

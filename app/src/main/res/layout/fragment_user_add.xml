@@ -98,25 +98,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:padding="12dp">
 
+                    <ImageView
+                        android:id="@+id/contactsSpoiler"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="@id/contactsTitleTextView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/contactsTitleTextView"
+                        app:tint="@color/purple_200"
+                        tools:ignore="ContentDescription" />
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/contactsTitleTextView"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Contacts block"
-                        app:drawableEndCompat="@drawable/ic_arrow_down" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/contactsSpoiler"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/contactsGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:constraint_referenced_ids="emailEditTextLayout, phoneEditTextLayout, websiteEditTextLayout" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailEditTextLayout"
                         style="?attr/textInputStyle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Email"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/contactsTitleTextView">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/emailEditText"
@@ -126,11 +149,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/phoneEditTextLayout"
                         style="?attr/textInputStyle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Phone"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/emailEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/emailEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/emailEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/phoneEditText"
@@ -140,11 +166,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/websiteEditTextLayout"
                         style="?attr/textInputStyle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Website"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/emailEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/emailEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/phoneEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/websiteEditText"
@@ -152,8 +181,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -161,25 +189,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:padding="12dp">
 
+                    <ImageView
+                        android:id="@+id/addressSpoiler"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="@id/addressTitleTextView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/addressTitleTextView"
+                        app:tint="@color/purple_200"
+                        tools:ignore="ContentDescription" />
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/addressTitleTextView"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Address block"
-                        app:drawableEndCompat="@drawable/ic_arrow_down" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/addressSpoiler"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/addressGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:constraint_referenced_ids="streetEditTextLayout, suiteEditTextLayout, cityEditTextLayout, zipcodeEditTextLayout, geoEditTextLayout" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/streetEditTextLayout"
                         style="?attr/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Street"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/addressTitleTextView">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/streetEditText"
@@ -189,11 +240,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/suiteEditTextLayout"
                         style="?attr/textInputStyle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Suite"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/streetEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/streetEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/streetEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/suiteEditText"
@@ -203,11 +257,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/cityEditTextLayout"
                         style="?attr/textInputStyle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="City"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/streetEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/streetEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/suiteEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/cityEditText"
@@ -217,11 +274,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/zipcodeEditTextLayout"
                         style="?attr/textInputStyle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="zip code"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/streetEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/streetEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/cityEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/zipcodeEditText"
@@ -231,12 +291,15 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/geoEditTextLayout"
                         style="?attr/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:hint="Geo"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/streetEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/streetEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/zipcodeEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/geoEditText"
@@ -245,7 +308,7 @@
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -253,25 +316,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:padding="12dp">
 
+                    <ImageView
+                        android:id="@+id/companySpoiler"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="@id/companyTitleTextView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/companyTitleTextView"
+                        app:tint="@color/purple_200"
+                        tools:ignore="ContentDescription" />
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/companyTitleTextView"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Company block"
-                        app:drawableEndCompat="@drawable/ic_arrow_down" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/companySpoiler"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/companyGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:constraint_referenced_ids="companyNameEditTextLayout, companyCatchPhraseEditTextLayout, companyBsEditTextLayout" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/companyNameEditTextLayout"
                         style="?attr/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Name"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/companyTitleTextView">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/companyNameEditText"
@@ -281,11 +367,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/companyCatchPhraseEditTextLayout"
                         style="?attr/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Catch phrase"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/companyNameEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/companyNameEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/companyNameEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/companyCatchPhraseEditText"
@@ -295,11 +384,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/companyBsEditTextLayout"
                         style="?attr/textInputStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="bs"
-                        android:visibility="gone">
+                        app:layout_constraintEnd_toEndOf="@id/companyNameEditTextLayout"
+                        app:layout_constraintStart_toStartOf="@id/companyNameEditTextLayout"
+                        app:layout_constraintTop_toBottomOf="@id/companyCatchPhraseEditTextLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/companyBsEditText"
@@ -307,8 +399,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
