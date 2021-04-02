@@ -16,7 +16,7 @@ class App: Application() {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
+                    .detectNetwork()
                     .penaltyDeath()
                     .build()
             )

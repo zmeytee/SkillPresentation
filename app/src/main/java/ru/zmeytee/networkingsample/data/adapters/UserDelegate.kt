@@ -2,6 +2,8 @@ package ru.zmeytee.networkingsample.data.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import ru.zmeytee.networkingsample.R
 import ru.zmeytee.networkingsample.data.models.User
